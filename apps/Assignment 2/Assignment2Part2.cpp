@@ -92,4 +92,5 @@ int main(){
 
     bool isSame = arr == arr2;
     std::cout << isSame << std::endl;
+    return 0;
 }

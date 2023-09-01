@@ -33,5 +33,5 @@ int main(){
     std::cout << "Capacity: " << test.capacity() << std::endl;
     std::cout << "Size: " << test.size() << "\nPushing Elements into vector..." << std::endl;
 
-    
+    return 0;
 }

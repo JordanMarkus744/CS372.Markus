@@ -72,5 +72,5 @@ int main(){
 
     std::cout << bag.size() << std::endl;
     std::cout << bag.count();
-
+    return 0;
 }
