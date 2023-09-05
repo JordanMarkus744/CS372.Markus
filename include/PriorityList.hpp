@@ -134,6 +134,19 @@ class Priority : public List<T>{
         
     }
 
+    T Pop(){ // This function pops of the tail of the list which will be the node with the highest priority
+        if (head->next == nullptr){
+            std::cout << "List is empty!" << std::endl;
+        }
+        else{
+            Node* newNode = new Node();
+            newNode = tail;
+            tail = tail->prev;
+            tail->next = nullptr;
+            return newNode->data;
+        }
+    }
+
     void Print(){
         Node* temp = head;
         while(temp != nullptr){

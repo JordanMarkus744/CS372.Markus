@@ -12,6 +12,8 @@ int main(){ // If you use the overloaded Insert function that takes in only prio
     PriorityList.Insert(PriorityList.head, 10,10);
     std::cout << "Now I've inserted prio 10 data 10 at the head!" << std::endl;
     PriorityList.Print();
+    std::cout << "Popped off " << PriorityList.Pop() << std::endl;
+    PriorityList.Print();
 
     return 0;
 }
