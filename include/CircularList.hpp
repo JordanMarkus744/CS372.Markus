@@ -5,7 +5,7 @@ template<typename T>
 class Circular : public List<T>{
     class Node {
     public:
-        T  data;
+        T data;
         Node* prev;
         Node* next;
     };
@@ -23,6 +23,17 @@ class Circular : public List<T>{
     Node* tail;
     Circular(){
         setupList();
+    }
+
+    Circular(T newData) {
+        setupList();
+        head->data = newData;
+    }
+
+    Circular(Circular& rhs) { // copy constructor
+        deleteListContents();
+        head = rhs.head;
+        tail = rhs.tail;
     }
 
     Node* Tail(){
@@ -94,7 +105,7 @@ class Circular : public List<T>{
             std::cout << temp->data << std::endl;
             temp = temp->next;
         }
-        while(temp->data != node->data);
+        while(temp != node);
         std::cout << temp->data << std::endl;
     }
 };
