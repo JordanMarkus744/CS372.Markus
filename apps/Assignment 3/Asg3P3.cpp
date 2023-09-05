@@ -26,4 +26,5 @@ int main(){
 
     myList.Circle(myList.tail);
 
+    return 0;
 }
