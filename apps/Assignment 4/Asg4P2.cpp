@@ -1,7 +1,7 @@
 #include "DerivedArray.hpp"
 #include "DerivedVector.hpp"
 #include <iostream>
-// Had help from ChatGPT with this program
+// Had help from ChatGPT with this program and still couldn't get it 100% working
 
 int main() {
     // Testing Array class and vector class
