@@ -21,7 +21,13 @@ int main(){
                 myStack.pop();
             }
         }
-        std::cout << "Your parenthesis are balanced!" << std::endl;
+
+        if (myStack.empty()){
+            std::cout << "Your parenthesis are balanced!" << std::endl;
+        }
+        else{
+            std::cout << "Your parenthesis are inbalanced!" << std::endl;
+        }
         return 0;
     }
 }
