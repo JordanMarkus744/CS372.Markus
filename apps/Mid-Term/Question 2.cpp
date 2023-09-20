@@ -21,6 +21,8 @@ int main(){
                 myStack.pop();
             }
         }
+    }
+        
 
         if (myStack.empty()){
             std::cout << "Your parenthesis are balanced!" << std::endl;
@@ -29,5 +31,5 @@ int main(){
             std::cout << "Your parenthesis are inbalanced!" << std::endl;
         }
         return 0;
-    }
+    
 }
