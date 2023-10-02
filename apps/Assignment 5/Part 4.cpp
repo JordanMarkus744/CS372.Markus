@@ -2,8 +2,8 @@
 #include <iostream>
 #include <memory>
 
-std::shared_ptr<Tree> createTreeWithoutLeaves(const Tree& originalTree) {
-    std::shared_ptr<Tree> newTree = std::make_shared<Tree>();
+std::shared_ptr<Tree<int>> createTreeWithoutLeaves(const Tree<int>& originalTree) {
+    std::shared_ptr<Tree<int>> newTree = std::make_shared<Tree<int>>();
 
         // Helper function to copy the tree without leaves
     std::shared_ptr<Node> copyWithoutLeaves(const std::shared_ptr<Node>& currentNode) {
