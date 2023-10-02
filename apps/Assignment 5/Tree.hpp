@@ -1,72 +1,102 @@
-#include <memory>
 #pragma once
-// Got code from Dr. Lewis Lecture Notes
-template<typename V>
+#include <iostream>
+#include <memory>
+
+template<typename T>
 class Tree {
 private:
-   struct Node {
-      Node(V v, std::shared_ptr<Node> & l, std::shared_ptr<Node>Node & r):
-               value(v), left(l), right(r) {}
-      V value;
-      std::shared_ptr<Node> left;
-      std::shared_ptr<Node> right;
-   };
-   explicit Tree(shared_ptr<Node> & node): root(node) {}
-   std::shared_ptr<Node> root;
-public:
-   Tree() {}
-   Tree(Tree const &lft, V value, Tree const &rgt) : root(Node(val, lft->root, rgt->root )) {}
-           
-   bool isEmpty() const { return !root; }
-   V getRoot() const { return root->val; }
-   Tree &left() const {return root->left; }
-   Tree &right() const {return root->right; }
+    struct Node {
+        T data;
+        std::shared_ptr<Node> left;
+        std::shared_ptr<Node> right;
 
+        Node(T val) : data(val), left(nullptr), right(nullptr) {}
+    };
+    
+    std::shared_ptr<Node> root;
 
-    bool deleteLeaf(V x) {
-    return deleteLeaf(root, x);
-}
+    // Helper function to add a leaf node
+    std::shared_ptr<Node> addLeaf(T data, std::shared_ptr<Node> curr) {
+        if (!curr) {
+            return std::make_shared<Node>(data);
+        }
 
-bool deleteLeaf(std::shared_ptr<Node>& currentNode, V x) {
-    if (!currentNode) {
-        return false; // Node not found
+        if (data <= curr->data) {
+            curr->left = addLeaf(data, curr->left);
+        } else {
+            curr->right = addLeaf(data, curr->right);
+        }
+        return curr;
     }
 
-    if (currentNode->value == x) {
-        // Node with value x found, delete it
-        currentNode = nullptr;
+    // Helper function to delete a leaf node
+    std::shared_ptr<Node> deleteLeaf(T data, std::shared_ptr<Node> curr) {
+        if (!curr) {
+            return nullptr; // Node not found
+        }
+
+        if (data < curr->data) {
+            curr->left = deleteLeaf(data, curr->left);
+        } else if (data > curr->data) {
+            curr->right = deleteLeaf(data, curr->right);
+        } else {
+            if (!curr->left) {
+                return curr->right;
+            } else if (!curr->right) {
+                return curr->left;
+            }
+
+            // Node with value data found, replace it with the in-order successor
+            std::shared_ptr<Node> minRight = findMin(curr->right);
+            curr->data = minRight->data;
+            curr->right = deleteLeaf(minRight->data, curr->right);
+        }
+        return curr;
+    }
+
+    // Helper function to find the minimum value node in a subtree
+    std::shared_ptr<Node> findMin(std::shared_ptr<Node> node) {
+        while (node->left) {
+            node = node->left;
+        }
+        return node;
+    }
+
+    // Helper function for tree traversal
+    void Traverse(std::shared_ptr<Node> current) {
+        if (current) {
+            Traverse(current->left);
+            std::cout << current->data << " ";
+            Traverse(current->right);
+        }
+    }
+
+public:
+    Tree() : root(nullptr) {}
+
+    // Public method to add a leaf node
+    void addLeaf(T data) {
+        root = addLeaf(data, root);
+    }
+
+    // Public method to delete a leaf node
+    bool deleteLeaf(T data) {
+        if (!root) {
+            std::cout << "Tree is empty!" << std::endl;
+            return false;
+        }
+        root = deleteLeaf(data, root);
         return true;
     }
 
-    // Recursively search in the left and right subtrees
-    bool deletedLeft = deleteLeaf(currentNode->left, x);
-    bool deletedRight = deleteLeaf(currentNode->right, x);
-
-    return deletedLeft || deletedRight;
-
-}
-
-
-   bool member(V x) const{
-    if (isEmpty()){
-        return false;
-    }
-    else{
-        if (getRoot() == x){
-            return true;
-        }
-        else{
-            return left().member(x) || right().member(x);
-        }
+    // Public method to check if the tree is empty
+    bool isEmpty() const {
+        return !root;
     }
 
-   }
-   bool isLeaf() const{
-    if (isEmpty()){
-        return false;
+    // Public method to traverse the tree
+    void Traverse() {
+        Traverse(root);
+        std::cout << std::endl;
     }
-    else{
-        return !root->left && !root->right;
-    }
-   }
 };
