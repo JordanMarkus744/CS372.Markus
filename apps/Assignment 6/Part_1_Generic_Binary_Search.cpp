@@ -45,22 +45,24 @@ bool binarySearch(std::vector<T> aSortedVector, T itemToBeFound, bool printDebug
         count++;
         mid = low + (high - low) / 2;
     }
-    if (printDebugData){
-        if (aSortedVector[mid] == itemToBeFound){ // We found the target
+
+    if (aSortedVector[mid] == itemToBeFound){ // We found the target
+        if (printDebugData){
             std::cout << "Searched " << count << " items to find " << aSortedVector[mid] << " at index " << mid << std::endl;
             return true;
         }
+        std::cout << "Found " << aSortedVector[mid] << " at index " << mid << std::endl;
+        return true;        
+    }
+    
+    // We don't need an else here because if we found the data in the vector, then it'll return anyway and this code will not be ran.
 
+    if (printDebugData){
         std::cout << "Searched " << count << " items and couldn't find the item in the vector." << std::endl;
         return false;
     }
-    else{
-        if (aSortedVector[mid] == itemToBeFound){ // We found the target
-            std::cout << "Found " << aSortedVector[mid] << " at index " << mid << std::endl;
-            return true;
-        }
 
-        std::cout << "Couldn't find item in vector." << std::endl;
-        return false;
-    }
+    std::cout << "Couldn't find item in vector." << std::endl;
+    return false;
+    
 }
