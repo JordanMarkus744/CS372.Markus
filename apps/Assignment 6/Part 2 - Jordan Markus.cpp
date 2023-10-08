@@ -19,7 +19,7 @@ std::unique_ptr<MyStructure> createAndInitializeStructure(size_t numItems) {
     auto myStruct = std::make_unique<MyStructure>();
     myStruct->size = numItems;
     myStruct->intVector = std::make_unique<std::vector<int>>();
-    myStruct->binarySearchTree = std::make_shared<Tree<int>>(); // Assuming you have a Tree class defined
+    myStruct->binarySearchTree = std::make_shared<Tree<int>>(); 
 
     // Fill the vector with random integers
     std::srand(time(NULL));
@@ -41,16 +41,12 @@ std::unique_ptr<MyStructure> createAndInitializeStructure(size_t numItems) {
 }
 
 int main() {
-    std::chrono::time_point<std::chrono::system_clock> start, end;
     size_t numItems = 1000; // Change this as needed
-    start = std::chrono::system_clock::now();
 
     auto myStruct = createAndInitializeStructure(numItems);
 
-    end = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "\nTook " << elapsed_seconds.count() << "s\n";
+    myStruct->binarySearchTree->Traverse();
 
 
     return 0;
