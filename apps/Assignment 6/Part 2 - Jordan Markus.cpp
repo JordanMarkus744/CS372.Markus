@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <random>
 #include <time.h>
+#include <chrono>
+#include <cmath>
 #include "Tree.hpp"
 
 struct MyStructure {
@@ -39,10 +41,17 @@ std::unique_ptr<MyStructure> createAndInitializeStructure(size_t numItems) {
 }
 
 int main() {
-    size_t numItems = 100; // Change this as needed
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    size_t numItems = 1000; // Change this as needed
+    start = std::chrono::system_clock::now();
+
     auto myStruct = createAndInitializeStructure(numItems);
 
-    myStruct->binarySearchTree->Traverse();
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+
+    std::cout << "\nTook " << elapsed_seconds.count() << "s\n";
+
 
     return 0;
 }
