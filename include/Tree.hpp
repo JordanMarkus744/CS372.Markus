@@ -71,6 +71,10 @@ private:
         }
     }
 
+    T getRoot(){
+        return root->data;
+    }
+
 public:
     Tree() : root(nullptr) {}
 
@@ -102,7 +106,7 @@ public:
 
 
 
-   bool member(V x) const{
+   bool member(T x) const{
     if (isEmpty()){
         return false;
     }

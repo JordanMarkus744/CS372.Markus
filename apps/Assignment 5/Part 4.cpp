@@ -22,7 +22,7 @@ std::shared_ptr<Tree<int>> createTreeWithoutLeaves(const Tree<int>& originalTree
         return newNode;
     }
 
-    newTree->root = copyWithoutLeaves(originalTree.root);
+    newTree.getRoot() = copyWithoutLeaves(originalTree.root);
     return newTree;
 }
 
