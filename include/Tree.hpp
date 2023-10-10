@@ -78,6 +78,30 @@ private:
 public:
     Tree() : root(nullptr) {}
 
+    bool SearchTree(std::shared_ptr<Tree<int>> currentTree, T val){
+        if (currentTree->isEmpty()){
+            return false;
+        }
+        else{
+            return SearchTree(currentTree, val, currentTree->root);
+        }
+    }
+
+    bool SearchTree(std::shared_ptr<Tree<int>> currentTree, T val, std::shared_ptr<Node> curr){
+        if (currentTree->isEmpty()){
+            return false;
+        }
+        if (curr->data < val){
+            return SearchTree(currentTree, val, curr->right);
+        }
+        else if (curr->data > val){
+            return SearchTree(currentTree, val, curr->left);
+        }
+        else{
+            return true;
+        }
+    }
+
     // Public method to add a leaf node
     void addLeaf(T data) {
         root = addLeaf(data, root);
@@ -106,7 +130,7 @@ public:
 
 
 
-   bool member(T x) const{
+   /*bool member(T x) const{
     if (isEmpty()){
         return false;
     }
@@ -119,7 +143,7 @@ public:
         }
     }
 
-   }
+   }*/
    bool isLeaf() const{
     if (isEmpty()){
         return false;
