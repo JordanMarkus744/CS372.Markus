@@ -49,8 +49,8 @@ bool binarySearch(const std::vector<T>& aSortedVector, T itemToBeFound, bool pri
     int high = aSortedVector.size() - 1;
     int mid = low + (high - low)/2; 
 
-    while(aSortedVector[mid] != itemToBeFound || mid != static_cast<int>(aSortedVector.size()-1)){ // only put static_cast<int> there to get rid of an error
-        if (count > static_cast<int>(aSortedVector.size())){
+    while(aSortedVector[mid] != itemToBeFound || mid != static_cast<int>(aSortedVector.size()-1)){ 
+        if (count > aSortedVector.size()){
             break;
         }
         if (itemToBeFound < aSortedVector[mid]){
@@ -105,7 +105,7 @@ int main() {
         auto myStruct = createAndInitializeStructure(numItems);
         double avgArraySearchTime = 0.0;
         double avgTreeSearchTime = 0.0;
-        for(int randnum : randomNumbers){ // measure array search time
+        for(int randnum : randomNumbers){
             // Measure array search time
             start = std::chrono::system_clock::now();
             auto resultArray = binarySearch(*myStruct->intVector, randnum, false);
