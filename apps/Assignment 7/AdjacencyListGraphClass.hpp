@@ -9,6 +9,11 @@ class AdjacencyListGraph : public GraphBase{
 
     public:
 
+    AdjacencyListGraph() {
+        numVertices = 0;
+        adjacencyList.resize(0);
+    }
+
     AdjacencyListGraph(int num) : numVertices(num){
         adjacencyList.resize(numVertices);
     };
@@ -70,5 +75,13 @@ class AdjacencyListGraph : public GraphBase{
         }
         // We divide by 2 because the edges are counted twice
         return num / 2;
+    }
+
+    void Resize(int num){
+        adjacencyList.resize(num);
+    }
+
+    std::vector<std::vector<int>>& getVec(){
+        return adjacencyList;
     }
 };
