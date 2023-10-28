@@ -1,4 +1,3 @@
-
 class GraphBase{
     public:
     virtual void addEdge(int v1, int v2) = 0;
@@ -8,4 +7,3 @@ class GraphBase{
     virtual int getNumVertices() = 0;
     virtual int getNumEdges() = 0;
 };
-

@@ -30,8 +30,8 @@ int main(){
     social.display();
 
 
-    int me = 0; // Replace with your index in the group
-    int kevinBacon = 5; // Replace with Kevin Bacon's index
+    int me = 0;
+    int kevinBacon = 5;
 
     std::vector<int> path;
     bool isConnected = social.isConnected(me, kevinBacon, path);
