@@ -155,32 +155,35 @@ public:
 };
 
     // Part 1
-    template <typename T>
-int countNodes(const std::shared_ptr<Tree<T>::Node>& root) {
+template<typename V>
+int countNodes(const std::shared_ptr<typename Tree<V>::Node>& root) {
     if (!root) {
         return 0;
     }
-    return 1 + countNodes(root->left) + countNodes(root->right);
+
+    return 1 + countNodes<V>(root->left) + countNodes<V>(root->right);
 }
 
-    // Part 2
-    template <typename T>
-int countInternalNodes(const std::shared_ptr<Tree<T>::Node>& root) {
-    if (!root || (!root->left && !root->right)) {
+// Part 2
+template<typename V>
+int countInternalNodes(const std::shared_ptr<typename Tree<V>::Node>& root) {
+    if (!root || (!root->left && !root->right)) { // base case
         return 0;
     }
-    return 1 + countInternalNodes(root->left) + countInternalNodes(root->right);
+
+    return 1 + countInternalNodes<V>(root->left) + countInternalNodes<V>(root->right);
 }
 
-    // Part 3
-    template<typename T>
-void computeExternalPathLength(const std::shared_ptr<Tree<T>::Node>& root, int& summation) {
-    if (!root) {
+// Part 3
+template<typename V>
+void computeExternalPathLength(const std::shared_ptr<typename Tree<V>::Node>& root, int& summation) {
+    if (!root) { // base case
         return;
     }
+
     summation += 1;
-    computeExternalPathLength(root->left, summation);
-    computeExternalPathLength(root->right, summation);
+    computeExternalPathLength<V>(root->left, summation);
+    computeExternalPathLength<V>(root->right, summation);
 }
 
 
